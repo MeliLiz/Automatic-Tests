@@ -40,6 +40,8 @@ sel = driver.find_element(By.XPATH, '//*[@id="r1-0"]/div/h2/a[1]')
 sel.click()
 print(driver.current_url)
 """
+
+"""
 # With PokemonDB
 driver.get("https://pokemondb.net/pokedex/stats/gen1")
 table = driver.find_element(By.CLASS_NAME, 'data-table') # Find the table
@@ -47,10 +49,15 @@ body = table.find_element(By.TAG_NAME, 'tbody') # Find the body
 rows = body.find_elements(By.TAG_NAME, 'tr') # Find the rows
 for row in rows:
     print(row.text)
-    """cells = row.find_elements(By.TAG_NAME, 'td') # Find the cells
-    for i, cell in enumerate(cells):
-        if i == 1:
-            print(cell.text)
-            break"""
+    
+"""
+driver.get("https://pokemondb.net/pokedex/stats/gen1")
+# Search the type grass and get the results
+type_filter = driver.find_element(By.XPATH, '//*[@id="filter-pkmn-type"]')
+#type_filter = driver.find_element(By.ID, 'filter-pkmn-type')
+# Select the type grass
+type_filter.click()
+driver.find_element(By.XPATH, '//option[text()="Grass"]').click()
+
 
 
