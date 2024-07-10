@@ -54,7 +54,7 @@ for row in rows:
     
 """
 
-"""
+
 driver.get("https://pokemondb.net/pokedex/stats/gen1")
 table = driver.find_element(By.CLASS_NAME, 'data-table') # Find the table
 body = table.find_element(By.TAG_NAME, 'tbody') # Find the body
@@ -66,8 +66,8 @@ print(len(grass_type))
 #type_filter.click()
 #driver.find_element(By.XPATH, '//option[text()="Grass"]').click()
 
-"""
 
+"""
 # Get the classes of Facultad de Ciencias
 driver.get("https://www.fciencias.unam.mx/")
 head = driver.find_element(By.XPATH, '/html/body/div/div/header/div[2]/div/div/div/div/div[2]/div/div/div/div/div[1]/div[2]/nav/div/div/ul/li[1]/a')
@@ -79,6 +79,6 @@ cc.click()
 
 ActionBuilder(driver).clear_actions()
 
-
+"""
 
 
