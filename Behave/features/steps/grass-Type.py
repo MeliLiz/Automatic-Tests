@@ -18,3 +18,18 @@ def step_impl(context):
     body = table.find_element(By.TAG_NAME, "tbody") # Find the body
     rows = body.find_elements(By.TAG_NAME, "tr") # Find the rows
     context.test.assertEqual(len(rows), 151)
+    
+"""Given Validar la cantidad de pokemon de tipo pasto de la primera generación
+        When Se accede a la página de pokedex
+        Then Validar que existan 14 pokemon de tipo pasto"""
+        
+@given(u'Validar la cantidad de pokemon de tipo pasto de la primera generación')
+def step_impl(context):
+    pass
+
+@then(u'Validar que existan 14 pokemon de tipo pasto')
+def step_impl(context):
+    table = context.driver.find_element(By.CLASS_NAME, "data-table")
+    body = table.find_element(By.TAG_NAME, "tbody")
+    grass_type = body.find_elements(By.CLASS_NAME, "type-grass")
+    context.test.assertEqual(len(grass_type), 14)

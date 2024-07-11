@@ -15,11 +15,7 @@ def before_all(context):
     context.driver.set_window_size(context.config.get('Browser', 'width'), context.config.get('Browser', 'height')) # Set the window size
     
     context.driver.implicitly_wait(10) # Set the implicit wait time
-    """table = driver.find_element(By.CLASS_NAME, 'data-table') # Find the table
-    body = table.find_element(By.TAG_NAME, 'tbody') # Find the body
-    rows = body.find_elements(By.TAG_NAME, 'tr') # Find the rows
-    for row in rows:
-        print(row.text)"""
+    
   
 # This will run after all scenarios  
 def after_all(context):
