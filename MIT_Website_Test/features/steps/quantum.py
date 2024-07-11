@@ -13,10 +13,15 @@ from selenium.webdriver.support import expected_conditions as EC
 def open_mit_website(context):
     context.driver.get(context.config.get('URL', 'url'))
 
-@when('Search for websites about "{search_term}"')
+@when('Search for wbsites about "{search_term}"')
 def search_for_quantum(context, search_term):
-    search_box = context.driver.find_element(By.ID,"es-search-form-input")
-    search_box.send_keys(search_term + Keys.RETURN)
+    try:
+        search_box = context.driver.find_element(By.ID,"es-search-form-input")
+        search_box.send_keys(search_term + Keys.RETURN)
+        print(f"Searching for {search_term}")
+    except Exception as e:
+        print(f"Error finding the search box: {e}")
+    
     # Wait for the search results to be displayed
     search_results = WebDriverWait(context.driver, 10).until(
         EC.presence_of_all_elements_located((By.CSS_SELECTOR, "a")) # Waits for all the links to be present <a>
