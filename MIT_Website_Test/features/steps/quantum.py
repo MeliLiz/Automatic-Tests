@@ -32,15 +32,15 @@ def search_for_quantum(context, search_term):
 @then('Verify the results')
 def verify_results(context):
     result_found = False
-    # Find all the links of the pages
-    pages = context.driver.find_elements(By.CLASS_NAME, 'gsc-cursor-page')
+    # Find the number of pages in the search results
+    len_pages = len(context.driver.find_elements(By.CLASS_NAME, 'gsc-cursor-page'))
     i = 0
-    while i < len(pages):
-        
-        # Encuentra todos los resultados de búsqueda en la página actual
+    while i < len_pages:
+        print("i: ", i)
+        # Find all the search results on the current page
         search_results = context.driver.find_elements(By.CLASS_NAME, "gs-title")
         
-        # Itera a través de cada resultado en la página actual
+        # Iterate through the search results
         for result in search_results:
             print(result.text)
             if "A new way for quantum computing systems to keep their cool" in result.text:
@@ -49,22 +49,30 @@ def verify_results(context):
                 break
         
         if result_found:
-            break  # Sal del bucle si se encuentra el resultado
+            print("Result found")
+            break  # Exit the loop if the result is found, no need to check other pages
         
-        # Verifica si hay una página siguiente y navega a ella
+        # Verify if there are more pages available
         try:
-            # Verifica si el siguiente botón de página existe
+            # Find all the page buttons
+            pages = context.driver.find_elements(By.CLASS_NAME, 'gsc-cursor-page')
+            # Verify if there is a next button
             if i+1 < len(pages):
-                next_button = pages[i+1]
+                next_button = pages[i+1]  # Get the next button
                 print(next_button.text)
-                # Desplázate al elemento next_button
+                # Scroll to the next button
                 context.driver.execute_script("arguments[0].scrollIntoView();", next_button)
                 print("Desplazando")
-                # Haz clic en el elemento utilizando JavaScript
+                # Click the next button
                 context.driver.execute_script("arguments[0].click();", next_button)
                 print("Clicking")
-                search_results = WebDriverWait(context.driver, 10).until(
-                    EC.presence_of_all_elements_located((By.CSS_SELECTOR, "a")) # Waits for all the links to be present <a>
+                # Wait for the old search results to disappear
+                WebDriverWait(context.driver, 10).until(
+                    EC.staleness_of(search_results[0])
+                )
+                # Wait for the new search results to be displayed
+                WebDriverWait(context.driver, 10).until(
+                    EC.presence_of_all_elements_located((By.CLASS_NAME, "gs-title"))
                 )
             else:
                 raise Exception("No more pages available.")
@@ -75,4 +83,4 @@ def verify_results(context):
         i += 1
     
     # Asegúrate de que se encontró el resultado
-    assert result_found, "The expected search result was not found."
+    context.test.assertTrue(result_found)
