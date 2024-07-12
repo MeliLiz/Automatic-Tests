@@ -1,10 +1,10 @@
 # Automatic Tests
 
-This repository contains automated tests for web pages using Selenium and Behave in Python.
+This repository contains basic automated tests for web pages using Selenium and Behave in Python.
 
 ## Description
 
-This project utilizes Selenium for browser automation and Behave for behavior-driven development (BDD) to implement automated tests for web applications. It aims to ensure the reliability and functionality of web pages through comprehensive automated testing.
+This repository utilizes Selenium for browser automation and Behave for behavior-driven development (BDD) to implement automated tests for web applications. It aims to ensure the reliability and functionality of web pages through comprehensive automated testing.
 
 ## Tools and Technologies
 
