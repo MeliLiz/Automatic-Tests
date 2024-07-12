@@ -9,6 +9,7 @@ def get_browser(browser_name):
         return driver
     elif browser_name == 'firefox':
         options = webdriver.FirefoxOptions()
+        options.binary_location = '/snap/firefox/current/usr/lib/firefox/firefox'
         driver = webdriver.Firefox(options=options)
         return driver
     elif browser_name == 'edge':
