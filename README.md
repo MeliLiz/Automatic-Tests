@@ -13,11 +13,10 @@ This project utilizes Selenium for browser automation and Behave for behavior-dr
 - **Behave**: A BDD framework for Python, which allows writing tests in a natural language style.
 
 ## Structure
-
+- The Behave and MIT_Website_Test directories contain the tests using Behave
 - `features/`: Contains feature files and step definitions.
-- `tests/`: Contains unit tests.
-- `pages/`: Contains page object models.
-- `requirements.txt`: Lists Python dependencies.
+- `helper/`: Contains the helper functions.
+- `setup.cfg`: Contains the arguments used for the tests.
 
 ## Usage
 
@@ -27,9 +26,9 @@ This project utilizes Selenium for browser automation and Behave for behavior-dr
     pip install -r requirements.txt
     ```
 
-2. **Run Behave Tests**: Execute the tests defined in the feature files.
+2. **Run Behave Tests**: Go to the Behave directory or the MIT_Website_Tet directory and execute the tests defined in the feature files.
 
-    ```sh
+    ``` sh
     behave
     ```
 
@@ -38,9 +37,3 @@ This project utilizes Selenium for browser automation and Behave for behavior-dr
     ```sh
     pytest
     ```
-
-## Future Plans
-
-- Add more complex test scenarios.
-- Explore other testing frameworks and tools.
-- Improve test coverage and robustness.
